@@ -1,6 +1,8 @@
 const fs = require('fs');
 const {glob,globStream,globSync} = require('glob')
 const  tf =require('@tensorflow/tfjs');
+require('@tensorflow/tfjs-node');
+
 //var data = []
 var XS =[]
 var YS = []
@@ -10,7 +12,7 @@ setTimeout(()=>{
         data.forEach((file) => {
             const imageData = fs.readFileSync(file)
             const answer = encodeDir(file)
-            const imageTensor = tf.(imageData,1)
+            const imageTensor = tf.node.imageDecode(imageData,1)
         
             //Store in memory
             YS.push(answer)
